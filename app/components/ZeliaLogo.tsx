@@ -24,7 +24,12 @@ export default function ZeliaLogo({
         width={size}
         height={height}
         priority
-        style={{ objectFit: "contain", width: "100%", height: "auto" }}
+        style={{
+          objectFit: "contain",
+          width: "100%",
+          height: "auto",
+          borderRadius: "20px",
+        }}
       />
 
       <style jsx>{`

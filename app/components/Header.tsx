@@ -161,7 +161,7 @@ export default function Header() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 72px;
+          height: 100px;
           gap: 24px;
         }
         .header-logo {
