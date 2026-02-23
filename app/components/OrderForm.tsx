@@ -38,7 +38,7 @@ export default function OrderForm({
     commune: "",
     address: "",
     deliveryType: "home",
-    quantity: "قطعة واحدة",
+    quantity: "1",
   });
   const [loading, setLoading] = useState(false);
 
@@ -64,6 +64,7 @@ export default function OrderForm({
         method: "POST",
         body: JSON.stringify({
           ...form,
+          productName,
           color: colorName,
           size: selectedSize,
           paymentMethod: "الدفع عند الاستلام",
@@ -71,12 +72,8 @@ export default function OrderForm({
       });
 
       const wilayaCode = Number(form.wilayaId);
-      let montant = basePrice;
-      if (form.quantity === "قطعتين (وفر 5%)") {
-        montant = basePrice * 2 * 0.95;
-      } else if (form.quantity === "3 قطع (وفر 10%)") {
-        montant = basePrice * 3 * 0.9;
-      }
+      const quantityNum = Number(form.quantity);
+      const montant = basePrice * quantityNum;
 
       try {
         await ecotrack.addOrder({
@@ -89,7 +86,7 @@ export default function OrderForm({
           type: 1,
           stop_desk: form.deliveryType === "office" ? 1 : 0,
           stock: 0,
-          quantite: form.quantity,
+          quantite: `${form.quantity} قطعة`,
           remarque: `اللون: ${colorName} | المقاس: ${selectedSize} | الكمية: ${form.quantity}`,
           produit: productName,
         });
@@ -119,7 +116,7 @@ export default function OrderForm({
         commune: "",
         address: "",
         deliveryType: "home",
-        quantity: "قطعة واحدة",
+        quantity: "1",
       });
       setSelectedColor(0);
       setSelectedSize(sizes[0] || "");
@@ -134,7 +131,6 @@ export default function OrderForm({
   return (
     <form className="order-form" onSubmit={handleSubmit}>
       <div className="order-form-header">
-        <MdShoppingCartCheckout className="order-header-icon" />
         <h3 className="order-header-title">اطلبي الآن</h3>
         {discount > 0 && (
           <span className="order-discount-badge">وفري {discount}%</span>
@@ -272,9 +268,11 @@ export default function OrderForm({
           className="order-input order-select"
           disabled={loading}
         >
-          <option>قطعة واحدة</option>
-          <option>قطعتين (وفر 5%)</option>
-          <option>3 قطع (وفر 10%)</option>
+          <option value="1">1 قطعة</option>
+          <option value="2">2 قطع</option>
+          <option value="3">3 قطع</option>
+          <option value="4">4 قطع</option>
+          <option value="5">5 قطع</option>
         </select>
       </div>
 
@@ -374,11 +372,11 @@ export default function OrderForm({
         .color-row {
           display: flex;
           flex-wrap: wrap;
-          gap: 8px;
+          gap: 10px;
         }
         .color-swatch {
-          width: 28px;
-          height: 28px;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           border: 2px solid transparent;
           cursor: pointer;
@@ -400,16 +398,20 @@ export default function OrderForm({
           gap: 8px;
         }
         .size-chip {
-          padding: 6px 16px;
+          padding: 8px 16px;
           border: 1.5px solid var(--gray-light);
-          border-radius: 8px;
+          border-radius: 10px;
           font-family: var(--font-heading);
-          font-size: 13px;
+          font-size: 14px;
           font-weight: 700;
           color: var(--dark-medium);
           background: white;
           cursor: pointer;
           transition: all 0.15s;
+          min-width: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .size-chip:hover {
           border-color: var(--mauve);
@@ -423,16 +425,16 @@ export default function OrderForm({
         .order-fields {
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 12px;
         }
         .order-input {
           width: 100%;
           background: #f9f6f4;
           border: 1.5px solid var(--gray-light);
-          border-radius: 10px;
-          padding: 11px 14px;
+          border-radius: 12px;
+          padding: 12px 16px;
           font-family: var(--font-body);
-          font-size: 14px;
+          font-size: 15px;
           color: var(--dark);
           outline: none;
           transition:
@@ -453,7 +455,7 @@ export default function OrderForm({
         }
         .order-textarea {
           resize: none;
-          min-height: 68px;
+          min-height: 80px;
         }
         .order-select {
           appearance: auto;
@@ -462,19 +464,19 @@ export default function OrderForm({
         .delivery-row {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 10px;
+          gap: 12px;
         }
         .delivery-opt {
-          padding: 12px;
-          border-radius: 10px;
-          border: 1.5px solid var(--gray-light);
+          padding: 14px;
+          border-radius: 12px;
+          border: 2px solid var(--gray-light);
           background: #f9f6f4;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 5px;
+          gap: 6px;
           font-family: var(--font-heading);
-          font-size: 13px;
+          font-size: 14px;
           font-weight: 700;
           color: var(--dark-medium);
           cursor: pointer;
@@ -486,24 +488,24 @@ export default function OrderForm({
         }
         .delivery-opt.active {
           border-color: var(--mauve);
-          background: rgba(107, 68, 83, 0.07);
+          background: var(--mauve-pale);
           color: var(--mauve);
         }
         :global(.delivery-opt-icon) {
-          font-size: 20px;
+          font-size: 24px;
         }
         .order-submit {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 10px;
+          gap: 12px;
           width: 100%;
-          padding: 16px;
+          padding: 18px;
           background: var(--mauve);
           color: white;
           border: none;
           font-family: var(--font-heading);
-          font-size: 16px;
+          font-size: 18px;
           font-weight: 900;
           cursor: pointer;
           transition: background 0.2s;
@@ -517,8 +519,8 @@ export default function OrderForm({
           cursor: not-allowed;
         }
         :global(.spin-icon) {
-          width: 20px;
-          height: 20px;
+          width: 24px;
+          height: 24px;
           animation: spin 1s linear infinite;
         }
         @keyframes spin {
@@ -527,6 +529,22 @@ export default function OrderForm({
           }
           to {
             transform: rotate(360deg);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .delivery-row {
+            grid-template-columns: 1fr;
+          }
+          .order-form {
+            margin-top: 16px;
+          }
+          .order-section {
+            padding: 14px 16px;
+          }
+          .order-submit {
+            font-size: 16px;
+            padding: 16px;
           }
         }
       `}</style>

@@ -39,20 +39,6 @@ export default function HeroSection() {
               العروض الحصرية
             </Link>
           </div>
-
-          {/* Stats */}
-          <div className="hero-stats">
-            {[
-              { value: "+200", label: "منتج فاخر" },
-              { value: "+5000", label: "عميلة سعيدة" },
-              { value: "100%", label: "ضمان الجودة" },
-            ].map((s) => (
-              <div key={s.label} className="stat">
-                <span className="stat-value">{s.value}</span>
-                <span className="stat-label">{s.label}</span>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="hero-visual" aria-hidden="true">

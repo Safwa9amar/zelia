@@ -96,37 +96,6 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Wishlist */}
-          <button className="icon-btn" aria-label="المفضلة">
-            <svg
-              width="20"
-              height="20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-          </button>
-
-          {/* Cart */}
-          <button className="icon-btn cart-btn" aria-label="عربة التسوق">
-            <svg
-              width="20"
-              height="20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 0 1-8 0" />
-            </svg>
-            <span className="cart-badge">3</span>
-          </button>
-
           {/* Mobile Menu Toggle */}
           <button
             className="icon-btn mobile-menu-btn"
@@ -200,6 +169,7 @@ export default function Header() {
           text-decoration: none;
           display: flex;
           align-items: center;
+          max-height: 56px;
         }
         .header-nav {
           display: flex;
@@ -241,25 +211,6 @@ export default function Header() {
         .icon-btn:hover {
           background: var(--mauve-pale);
           color: var(--mauve);
-        }
-        .cart-btn {
-          position: relative;
-        }
-        .cart-badge {
-          position: absolute;
-          top: 6px;
-          left: 6px;
-          background: var(--mauve);
-          color: white;
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          font-size: 10px;
-          font-weight: 700;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: var(--font-heading);
         }
         .search-wrapper {
           display: flex;

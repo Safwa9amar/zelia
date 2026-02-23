@@ -1,34 +1,26 @@
 "use client";
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { useSearchParams } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import FilterSidebar from "../components/FilterSidebar";
 import ProductCard from "../components/ProductCard";
 import { products } from "@/lib/products";
 import type { Product } from "@/lib/products";
 
 function CatalogContent() {
   const searchParams = useSearchParams();
-  const initCategory = searchParams.get("category") || "all";
-  const initQuery = searchParams.get("q") || "";
-  const initSort = searchParams.get("sort") || "newest";
   const initSale = searchParams.get("sale") === "true";
+  const initCategory = searchParams.get("category");
+  const initQuery = searchParams.get("q") || "";
 
   const [query, setQuery] = useState(initQuery);
-  const [selectedCategory, setSelectedCategory] = useState(initCategory);
-  const [maxPrice, setMaxPrice] = useState(1000);
-  const [minRating, setMinRating] = useState(0);
-  const [sortBy, setSortBy] = useState(initSort);
 
   const filtered: Product[] = products
     .filter((p) => {
       if (initSale && !p.isSale) return false;
-      if (selectedCategory !== "all" && p.category !== selectedCategory)
-        return false;
-      if (p.price > maxPrice) return false;
-      if (p.rating < minRating) return false;
+      if (initCategory && p.category !== initCategory) return false;
+
       if (query) {
         const q = query.toLowerCase();
         return (
@@ -40,12 +32,7 @@ function CatalogContent() {
       }
       return true;
     })
-    .sort((a, b) => {
-      if (sortBy === "price-asc") return a.price - b.price;
-      if (sortBy === "price-desc") return b.price - a.price;
-      if (sortBy === "rating") return b.rating - a.rating;
-      return b.id - a.id; // newest
-    });
+    .sort((a, b) => b.id - a.id); // newest
 
   return (
     <main>
@@ -55,8 +42,8 @@ function CatalogContent() {
           <h1 className="page-title">
             {initSale
               ? "العروض الحصرية"
-              : selectedCategory !== "all"
-                ? selectedCategory
+              : initCategory
+                ? initCategory
                 : "متجر زيليا"}
           </h1>
           <p className="page-subtitle">اكتشفي أرقى التصاميم العصرية</p>
@@ -98,18 +85,6 @@ function CatalogContent() {
 
         {/* Layout */}
         <div className="catalog-layout">
-          <FilterSidebar
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-            maxPrice={maxPrice}
-            onMaxPriceChange={setMaxPrice}
-            minRating={minRating}
-            onMinRatingChange={setMinRating}
-            sortBy={sortBy}
-            onSortChange={setSortBy}
-            totalResults={filtered.length}
-          />
-
           <div className="catalog-results">
             {filtered.length === 0 ? (
               <div className="empty-state">
@@ -118,18 +93,15 @@ function CatalogContent() {
                 </span>
                 <h2 className="empty-title">لا توجد نتائج</h2>
                 <p className="empty-desc">
-                  حاولي تغيير الفلاتر أو البحث بكلمات مختلفة
+                  حاولي تغيير الكلمات البحثية المختلفة
                 </p>
                 <button
                   className="btn-primary"
                   onClick={() => {
                     setQuery("");
-                    setSelectedCategory("all");
-                    setMaxPrice(1000);
-                    setMinRating(0);
                   }}
                 >
-                  إعادة تعيين الفلاتر
+                  عرض كل المنتجات
                 </button>
               </div>
             ) : (
@@ -158,10 +130,11 @@ function CatalogContent() {
           color: var(--gray-warm);
         }
         .catalog-search {
+          max-width: 600px;
+          margin: 0 auto 40px;
           position: relative;
           display: flex;
           align-items: center;
-          margin-bottom: 40px;
           background: white;
           border: 1.5px solid var(--gray-light);
           border-radius: var(--radius-full);
@@ -210,18 +183,12 @@ function CatalogContent() {
           color: var(--mauve);
         }
         .catalog-layout {
-          display: grid;
-          grid-template-columns: 260px 1fr;
-          gap: 32px;
-          align-items: start;
           padding-bottom: 80px;
-        }
-        .catalog-results {
         }
         .results-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
         }
         .empty-state {
           text-align: center;
@@ -243,10 +210,12 @@ function CatalogContent() {
           color: var(--gray-warm);
         }
 
-        @media (max-width: 900px) {
-          .catalog-layout {
-            grid-template-columns: 1fr;
+        @media (max-width: 1024px) {
+          .results-grid {
+            grid-template-columns: repeat(3, 1fr);
           }
+        }
+        @media (max-width: 768px) {
           .results-grid {
             grid-template-columns: repeat(2, 1fr);
           }

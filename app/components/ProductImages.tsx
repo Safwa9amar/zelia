@@ -67,7 +67,7 @@ export default function ProductImages({
         .product-images {
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 16px;
         }
         .main-image-container {
           position: relative;
@@ -85,18 +85,25 @@ export default function ProductImages({
         }
         .thumbnails {
           display: flex;
-          gap: 10px;
+          gap: 12px;
+          overflow-x: auto;
+          padding-bottom: 8px;
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE/Edge */
+        }
+        .thumbnails::-webkit-scrollbar {
+          display: none; /* Chrome/Safari */
         }
         .thumb-btn {
           position: relative;
-          width: 72px;
-          height: 90px;
+          width: 80px;
+          height: 100px;
           border-radius: var(--radius-md);
           overflow: hidden;
           border: 2px solid transparent;
           cursor: pointer;
           background: var(--cream-dark);
-          transition: border-color 0.2s;
+          transition: all 0.2s;
           flex-shrink: 0;
         }
         .thumb-btn:hover {
@@ -104,9 +111,21 @@ export default function ProductImages({
         }
         .thumb-btn.active {
           border-color: var(--mauve);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(107, 68, 83, 0.15);
         }
         .thumb-image {
           object-fit: cover;
+        }
+
+        @media (max-width: 480px) {
+          .product-images {
+            gap: 12px;
+          }
+          .thumb-btn {
+            width: 70px;
+            height: 88px;
+          }
         }
       `}</style>
     </div>

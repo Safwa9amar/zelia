@@ -7,7 +7,7 @@ interface ZeliaLogoProps {
 }
 
 export default function ZeliaLogo({
-  size = 120,
+  size = 100,
   className = "",
 }: ZeliaLogoProps) {
   // Maintaining the aspect ratio from the provided PNG
@@ -16,7 +16,7 @@ export default function ZeliaLogo({
   return (
     <div
       className={`logo-container ${className}`}
-      style={{ width: size, height: "auto" }}
+      style={{ width: size, height: "auto", maxHeight: "100%" }}
     >
       <Image
         src="/logo.png"

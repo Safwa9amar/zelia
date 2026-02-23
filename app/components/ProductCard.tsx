@@ -9,7 +9,6 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const [wishlisted, setWishlisted] = useState(false);
   const [imgError, setImgError] = useState(false);
 
   const discount = product.originalPrice
@@ -50,45 +49,14 @@ export default function ProductCard({ product }: ProductCardProps) {
             <button
               className="quick-add-btn"
               onClick={(e) => {
-                e.preventDefault();
-                // Cart logic would go here
+                // e.preventDefault(); // Removed to allow link click if necessary, but it's inside a link
               }}
             >
-              <svg
-                width="16"
-                height="16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <path d="M16 10a4 4 0 0 1-8 0" />
-              </svg>
-              أضف للسلة
+              مشاهدة المنتج
             </button>
           </div>
         </div>
       </Link>
-
-      {/* Wishlist */}
-      <button
-        className={`wishlist-btn ${wishlisted ? "wishlisted" : ""}`}
-        onClick={() => setWishlisted(!wishlisted)}
-        aria-label={wishlisted ? "إزالة من المفضلة" : "أضف للمفضلة"}
-      >
-        <svg
-          width="17"
-          height="17"
-          viewBox="0 0 24 24"
-          fill={wishlisted ? "currentColor" : "none"}
-          stroke="currentColor"
-          strokeWidth="2"
-        >
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-        </svg>
-      </button>
 
       {/* Card Body */}
       <div className="card-body">
@@ -219,30 +187,6 @@ export default function ProductCard({ product }: ProductCardProps) {
         .quick-add-btn:hover {
           background: var(--mauve);
           color: white;
-        }
-        .wishlist-btn {
-          position: absolute;
-          top: 12px;
-          left: 12px;
-          width: 34px;
-          height: 34px;
-          border-radius: 50%;
-          background: white;
-          border: none;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          color: var(--gray-warm);
-          transition:
-            color 0.2s,
-            transform 0.2s;
-          box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-        }
-        .wishlist-btn:hover,
-        .wishlist-btn.wishlisted {
-          color: var(--mauve);
-          transform: scale(1.1);
         }
         .card-body {
           padding: 14px 16px 18px;

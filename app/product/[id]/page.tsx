@@ -94,8 +94,7 @@ export default function ProductDetailPage({
     {
       id: "shipping",
       label: "الشحن والإرجاع",
-      content:
-        "الشحن المجاني على الطلبات فوق 2000 د.ج. يُسلَّم خلال 3-5 أيام عمل. يمكنك إرجاع المنتج خلال 14 يوماً من تاريخ الاستلام.",
+      content: "يُسلَّم خلال 3-5 أيام عمل.",
     },
   ];
 
@@ -243,8 +242,8 @@ export default function ProductDetailPage({
           display: flex;
           align-items: center;
           gap: 8px;
-          padding-top: 24px;
-          padding-bottom: 16px;
+          padding-top: 16px;
+          padding-bottom: 8px;
           font-size: 13px;
           flex-wrap: wrap;
         }
@@ -266,8 +265,8 @@ export default function ProductDetailPage({
 
         .product-layout {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 56px;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 48px;
           padding-top: 16px;
           padding-bottom: 80px;
           align-items: start;
@@ -293,9 +292,10 @@ export default function ProductDetailPage({
           margin-bottom: 8px;
         }
         .pd-name {
-          font-size: clamp(24px, 3vw, 36px);
+          font-size: clamp(24px, 3.5vw, 40px);
           color: var(--dark);
           margin-bottom: 16px;
+          line-height: 1.2;
         }
         .pd-rating {
           display: flex;
@@ -326,7 +326,7 @@ export default function ProductDetailPage({
         }
         .pd-price {
           font-family: var(--font-heading);
-          font-size: 28px;
+          font-size: 32px;
           font-weight: 800;
           color: var(--mauve);
         }
@@ -345,139 +345,9 @@ export default function ProductDetailPage({
           font-weight: 700;
         }
 
-        .pd-option-group {
-          margin-bottom: 24px;
-        }
-        .pd-option-label {
-          font-family: var(--font-heading);
-          font-size: 14px;
-          font-weight: 600;
-          color: var(--dark-medium);
-          margin-bottom: 10px;
-        }
-        .pd-option-label strong {
-          color: var(--dark);
-        }
-        .color-options {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-        }
-        .color-opt {
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          border: 2.5px solid transparent;
-          cursor: pointer;
-          transition:
-            border-color 0.2s,
-            transform 0.2s;
-          outline: none;
-        }
-        .color-opt:hover {
-          transform: scale(1.15);
-        }
-        .color-opt.selected {
-          border-color: var(--mauve);
-          box-shadow:
-            0 0 0 2px white,
-            0 0 0 4px var(--mauve);
-        }
-        .size-label-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 10px;
-        }
-        .size-guide-link {
-          font-size: 12px;
-          color: var(--mauve);
-          text-decoration: underline;
-        }
-        .size-options {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-        }
-        .size-btn {
-          min-width: 44px;
-          height: 44px;
-          padding: 0 12px;
-          border: 1.5px solid var(--gray-light);
-          border-radius: var(--radius-md);
-          background: white;
-          font-family: var(--font-heading);
-          font-size: 13px;
-          font-weight: 600;
-          color: var(--dark-medium);
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-        .size-btn:hover {
-          border-color: var(--mauve);
-          color: var(--mauve);
-        }
-        .size-btn.selected {
-          border-color: var(--mauve);
-          background: var(--mauve);
-          color: white;
-        }
-
-        .qty-control {
-          display: inline-flex;
-          align-items: center;
-          border: 1.5px solid var(--gray-light);
-          border-radius: var(--radius-full);
-          overflow: hidden;
-        }
-        .qty-btn {
-          width: 40px;
-          height: 40px;
-          border: none;
-          background: var(--cream-dark);
-          font-size: 20px;
-          color: var(--dark);
-          cursor: pointer;
-          transition: background 0.2s;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          line-height: 1;
-        }
-        .qty-btn:hover {
-          background: var(--mauve-pale);
-          color: var(--mauve);
-        }
-        .qty-value {
-          min-width: 40px;
-          text-align: center;
-          font-family: var(--font-heading);
-          font-weight: 700;
-          font-size: 16px;
-          color: var(--dark);
-        }
-
-        .pd-actions {
-          display: flex;
-          gap: 12px;
-          margin-bottom: 32px;
-          flex-wrap: wrap;
-        }
-        .add-to-cart {
-          flex: 1;
-          min-width: 180px;
-          padding: 14px 24px;
-        }
-        .add-to-cart.added {
-          background: var(--success);
-          border-color: var(--success);
-        }
-        .wishlist-outline-btn {
-          padding: 14px 20px;
-        }
-
         .pd-accordions {
           border-top: 1px solid var(--gray-light);
+          margin-top: 16px;
         }
         .accordion {
           border-bottom: 1px solid var(--gray-light);
@@ -505,40 +375,61 @@ export default function ProductDetailPage({
         }
 
         .related-section {
-          padding: 64px 0 80px;
+          padding: 80px 0;
           background: var(--cream-dark);
         }
         .related-header {
-          margin-bottom: 28px;
+          margin-bottom: 32px;
         }
         .related-title {
-          font-size: clamp(22px, 2.5vw, 30px);
+          font-size: clamp(22px, 2.5vw, 32px);
           color: var(--dark);
         }
         .related-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
+          gap: 24px;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           .product-layout {
             grid-template-columns: 1fr;
-            gap: 32px;
+            gap: 40px;
           }
           .product-info-col {
             position: static;
           }
+          .pd-name {
+            font-size: 28px;
+          }
           .related-grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
           }
         }
-        @media (max-width: 480px) {
-          .pd-actions {
-            flex-direction: column;
+
+        @media (max-width: 768px) {
+          .product-layout {
+            padding-bottom: 48px;
           }
-          .add-to-cart {
-            min-width: auto;
+          .related-section {
+            padding: 48px 0;
+          }
+          .related-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .breadcrumb {
+            padding-top: 12px;
+            font-size: 12px;
+          }
+          .pd-price {
+            font-size: 28px;
+          }
+          .related-grid {
+            gap: 12px;
           }
         }
       `}</style>
