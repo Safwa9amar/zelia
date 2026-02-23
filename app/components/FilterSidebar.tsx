@@ -108,8 +108,8 @@ export default function FilterSidebar({
           aria-label="السعر الأقصى"
         />
         <div className="range-labels">
-          <span>٥٠ د.ج</span>
-          <span>١٠٠٠ د.ج</span>
+          <span>50 د.ج</span>
+          <span>1000 د.ج</span>
         </div>
       </div>
 

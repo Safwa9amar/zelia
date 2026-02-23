@@ -66,7 +66,7 @@ export default function HomePage() {
                   أناقة متجددة
                 </h2>
                 <p className="promo-text">
-                  تخفيضات تصل إلى ٤٠٪ على تشكيلة الصيف
+                  تخفيضات تصل إلى 40% على تشكيلة الصيف
                 </p>
                 <Link
                   href="/catalog?sale=true"
@@ -127,19 +127,19 @@ export default function HomePage() {
                 {
                   icon: "🚚",
                   title: "شحن مجاني",
-                  desc: "على الطلبات فوق ٢٠٠٠ د.ج",
+                  desc: "على الطلبات فوق 2000 د.ج",
                 },
                 {
                   icon: "↩️",
                   title: "إرجاع سهل",
-                  desc: "١٤ يوماً لإرجاع منتجاتك",
+                  desc: "14 يوماً لإرجاع منتجاتك",
                 },
                 {
                   icon: "🔒",
-                  title: "دفع آمن ١٠٠%",
+                  title: "دفع آمن 100%",
                   desc: "بروتوكولات تشفير متقدمة",
                 },
-                { icon: "💬", title: "دعم ٢٤/٧", desc: "فريقنا دائماً بخدمتك" },
+                { icon: "💬", title: "دعم 24/7", desc: "فريقنا دائماً بخدمتك" },
               ].map((f) => (
                 <div key={f.title} className="feature-item">
                   <span className="feature-icon">{f.icon}</span>

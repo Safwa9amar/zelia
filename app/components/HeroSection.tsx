@@ -43,9 +43,9 @@ export default function HeroSection() {
           {/* Stats */}
           <div className="hero-stats">
             {[
-              { value: "+٢٠٠", label: "منتج فاخر" },
-              { value: "+٥٠٠٠", label: "عميلة سعيدة" },
-              { value: "١٠٠%", label: "ضمان الجودة" },
+              { value: "+200", label: "منتج فاخر" },
+              { value: "+5000", label: "عميلة سعيدة" },
+              { value: "100%", label: "ضمان الجودة" },
             ].map((s) => (
               <div key={s.label} className="stat">
                 <span className="stat-value">{s.value}</span>

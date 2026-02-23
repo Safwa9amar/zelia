@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cairo, Tajawal } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import ClientLayout from "./components/ClientLayout";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -55,7 +56,7 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className={`${cairo.variable} ${tajawal.variable} antialiased`}>
-        {children}
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

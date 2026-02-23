@@ -120,7 +120,7 @@ export default function Footer() {
             </li>
             <li className="footer-contact">
               <IoTimeOutline className="contact-icon" />
-              <span>السبت – الخميس، ٩ص – ٦م</span>
+              <span>السبت – الخميس، 9ص – 6م</span>
             </li>
           </ul>
           <div className="newsletter">
