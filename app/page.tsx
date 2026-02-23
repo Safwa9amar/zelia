@@ -127,7 +127,7 @@ export default function HomePage() {
                 {
                   icon: "🚚",
                   title: "شحن مجاني",
-                  desc: "على الطلبات فوق ٢٠٠ ر.س",
+                  desc: "على الطلبات فوق ٢٠٠٠ د.ج",
                 },
                 {
                   icon: "↩️",

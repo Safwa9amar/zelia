@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, Suspense } from "react";
+import { IoSearchOutline } from "react-icons/io5";
 import { useSearchParams } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -112,7 +113,9 @@ function CatalogContent() {
           <div className="catalog-results">
             {filtered.length === 0 ? (
               <div className="empty-state">
-                <span className="empty-icon">🔍</span>
+                <span className="empty-icon">
+                  <IoSearchOutline />
+                </span>
                 <h2 className="empty-title">لا توجد نتائج</h2>
                 <p className="empty-desc">
                   حاولي تغيير الفلاتر أو البحث بكلمات مختلفة

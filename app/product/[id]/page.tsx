@@ -1,10 +1,12 @@
 "use client";
 import { useState, use } from "react";
+import { IoSearchOutline } from "react-icons/io5";
 import Link from "next/link";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import ProductCard from "@/app/components/ProductCard";
 import ProductImages from "@/app/components/ProductImages";
+import OrderForm from "@/app/components/OrderForm";
 import { getProductById, getRelatedProducts } from "@/lib/products";
 
 export default function ProductDetailPage({
@@ -25,7 +27,9 @@ export default function ProductDetailPage({
       <>
         <Header />
         <div className="not-found">
-          <span className="nf-icon">🕵️</span>
+          <span className="nf-icon">
+            <IoSearchOutline />
+          </span>
           <h1 className="nf-title">المنتج غير موجود</h1>
           <p className="nf-desc">
             لا يمكن إيجاد المنتج المطلوب. يرجى العودة للمتجر.
@@ -91,7 +95,7 @@ export default function ProductDetailPage({
       id: "shipping",
       label: "الشحن والإرجاع",
       content:
-        "الشحن المجاني على الطلبات فوق ٢٠٠ ر.س. يُسلَّم خلال ٣-٥ أيام عمل. يمكنك إرجاع المنتج خلال ١٤ يوماً من تاريخ الاستلام.",
+        "الشحن المجاني على الطلبات فوق ٢٠٠٠ د.ج. يُسلَّم خلال ٣-٥ أيام عمل. يمكنك إرجاع المنتج خلال ١٤ يوماً من تاريخ الاستلام.",
     },
   ];
 
@@ -164,12 +168,12 @@ export default function ProductDetailPage({
             {/* Price */}
             <div className="pd-price-row">
               <span className="pd-price">
-                {product.price.toLocaleString("ar-SA")} ر.س
+                {product.price.toLocaleString("ar-DZ")} د.ج
               </span>
               {product.originalPrice && (
                 <>
                   <span className="pd-original-price">
-                    {product.originalPrice.toLocaleString("ar-SA")} ر.س
+                    {product.originalPrice.toLocaleString("ar-DZ")} د.ج
                   </span>
                   <span className="pd-discount-badge">وفري {discount}%</span>
                 </>
@@ -238,58 +242,8 @@ export default function ProductDetailPage({
               </div>
             </div>
 
-            {/* Actions */}
-            <div className="pd-actions">
-              <button
-                className={`btn-primary add-to-cart ${addedToCart ? "added" : ""}`}
-                onClick={handleAddToCart}
-              >
-                {addedToCart ? (
-                  <>
-                    <svg
-                      width="16"
-                      height="16"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      viewBox="0 0 24 24"
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    تمت الإضافة!
-                  </>
-                ) : (
-                  <>
-                    <svg
-                      width="16"
-                      height="16"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-                      <line x1="3" y1="6" x2="21" y2="6" />
-                      <path d="M16 10a4 4 0 0 1-8 0" />
-                    </svg>
-                    أضف للسلة
-                  </>
-                )}
-              </button>
-              <button className="btn-outline wishlist-outline-btn">
-                <svg
-                  width="16"
-                  height="16"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                </svg>
-                المفضلة
-              </button>
-            </div>
+            {/* Quick Order Form */}
+            <OrderForm productName={product.name} basePrice={product.price} />
 
             {/* Accordions */}
             <div className="pd-accordions">

@@ -1,6 +1,11 @@
-"use client";
 import Link from "next/link";
 import ZeliaLogo from "./ZeliaLogo";
+import {
+  IoMailOutline,
+  IoCallOutline,
+  IoTimeOutline,
+  IoHeart,
+} from "react-icons/io5";
 
 export default function Footer() {
   const year = 2026;
@@ -106,15 +111,15 @@ export default function Footer() {
           <h3 className="footer-col-heading">تواصل معنا</h3>
           <ul className="footer-links">
             <li className="footer-contact">
-              <span>📧</span>
-              <span>hello@zelia.sa</span>
+              <IoMailOutline className="contact-icon" />
+              <span>hello@zelia.dz</span>
             </li>
             <li className="footer-contact">
-              <span>📞</span>
-              <span>920 000 000</span>
+              <IoCallOutline className="contact-icon" />
+              <span>+213 000 000 000</span>
             </li>
             <li className="footer-contact">
-              <span>🕐</span>
+              <IoTimeOutline className="contact-icon" />
               <span>السبت – الخميس، ٩ص – ٦م</span>
             </li>
           </ul>
@@ -139,8 +144,11 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <p className="footer-copy">
-          © {year} زيليا. جميع الحقوق محفوظة. صُنع بـ 💛 في المملكة العربية
-          السعودية
+          © {year} زيليا. جميع الحقوق محفوظة. صُنع بـ{" "}
+          <span className="heart-icon">
+            <IoHeart />
+          </span>{" "}
+          في الجزائر
         </p>
       </div>
 
@@ -278,6 +286,19 @@ export default function Footer() {
         .footer-copy {
           font-size: 13px;
           color: var(--gray-warm);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+        }
+        .heart-icon {
+          color: #ff4d4d;
+          display: flex;
+          align-items: center;
+        }
+        .contact-icon {
+          font-size: 16px;
+          color: var(--warm-tan);
         }
 
         @media (max-width: 1024px) {

@@ -120,11 +120,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         {/* Price */}
         <div className="card-price">
           <span className="price-current">
-            {product.price.toLocaleString("ar-SA")} ر.س
+            {product.price.toLocaleString("ar-DZ")} د.ج
           </span>
           {product.originalPrice && (
             <span className="price-original">
-              {product.originalPrice.toLocaleString("ar-SA")} ر.س
+              {product.originalPrice.toLocaleString("ar-DZ")} د.ج
             </span>
           )}
         </div>

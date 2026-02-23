@@ -2,18 +2,37 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 
+import {
+  IoShirtOutline,
+  IoBagOutline,
+  IoSparklesOutline,
+  IoLayersOutline,
+  IoWomanOutline,
+  IoStarOutline,
+  IoWalkOutline,
+  IoJournalOutline,
+} from "react-icons/io5";
+import {
+  GiDress,
+  GiSkirt,
+  GiTrousers,
+  GiHighHeel,
+  GiDiamondRing,
+} from "react-icons/gi";
+import { HiOutlineSparkles } from "react-icons/hi2";
+
 const CATEGORIES = [
-  { id: "all", name: "الكل", emoji: "✦" },
-  { id: "فساتين", name: "فساتين", emoji: "👗" },
-  { id: "بلوزات", name: "بلوزات", emoji: "👚" },
-  { id: "تنانير", name: "تنانير", emoji: "🩱" },
-  { id: "بناطيل", name: "بناطيل", emoji: "👖" },
-  { id: "معاطف", name: "معاطف", emoji: "🧥" },
-  { id: "جاكيتات", name: "جاكيتات", emoji: "🥻" },
-  { id: "عبايات", name: "عبايات", emoji: "🌙" },
-  { id: "حقائب", name: "حقائب", emoji: "👜" },
-  { id: "أحذية", name: "أحذية", emoji: "👠" },
-  { id: "إكسسوارات", name: "إكسسوارات", emoji: "💎" },
+  { id: "all", name: "الكل", icon: <HiOutlineSparkles /> },
+  { id: "فساتين", name: "فساتين", icon: <GiDress /> },
+  { id: "بلوزات", name: "بلوزات", icon: <IoShirtOutline /> },
+  { id: "تنانير", name: "تنانير", icon: <GiSkirt /> },
+  { id: "بناطيل", name: "بناطيل", icon: <GiTrousers /> },
+  { id: "معاطف", name: "معاطف", icon: <IoShirtOutline /> },
+  { id: "جاكيتات", name: "جاكيتات", icon: <IoShirtOutline /> },
+  { id: "عبايات", name: "عبايات", icon: <GiDress /> },
+  { id: "حقائب", name: "حقائب", icon: <IoBagOutline /> },
+  { id: "أحذية", name: "أحذية", icon: <GiHighHeel /> },
+  { id: "إكسسوارات", name: "إكسسوارات", icon: <GiDiamondRing /> },
 ];
 
 interface CategoryStripProps {
@@ -52,7 +71,7 @@ export default function CategoryStrip({
                   }
                   className={`cat-pill ${isActive ? "active" : ""}`}
                 >
-                  <span className="cat-emoji">{cat.emoji}</span>
+                  <span className="cat-icon">{cat.icon}</span>
                   <span className="cat-label">{cat.name}</span>
                 </Link>
               );
@@ -63,7 +82,7 @@ export default function CategoryStrip({
                 className={`cat-pill ${isActive ? "active" : ""}`}
                 onClick={() => handleSelect(cat.id)}
               >
-                <span className="cat-emoji">{cat.emoji}</span>
+                <span className="cat-icon">{cat.icon}</span>
                 <span className="cat-label">{cat.name}</span>
               </button>
             );
@@ -116,8 +135,10 @@ export default function CategoryStrip({
           color: white;
           box-shadow: 0 4px 16px rgba(107, 68, 83, 0.3);
         }
-        .cat-emoji {
-          font-size: 16px;
+        .cat-icon {
+          font-size: 18px;
+          display: flex;
+          align-items: center;
         }
         .cat-label {
         }

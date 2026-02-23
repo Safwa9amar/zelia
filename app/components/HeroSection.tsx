@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { HiSparkles } from "react-icons/hi2";
 
 export default function HeroSection() {
   return (
@@ -69,7 +70,9 @@ export default function HeroSection() {
           </div>
           {/* Floating card */}
           <div className="floating-card">
-            <span className="fc-emoji">✦</span>
+            <span className="fc-icon">
+              <HiSparkles />
+            </span>
             <span className="fc-label">التشكيلة الجديدة</span>
           </div>
         </div>
@@ -226,9 +229,11 @@ export default function HeroSection() {
           box-shadow: 0 8px 32px rgba(107, 68, 83, 0.18);
           animation: float 3s ease-in-out infinite;
         }
-        .fc-emoji {
+        .fc-icon {
           font-size: 18px;
           color: var(--warm-tan);
+          display: flex;
+          align-items: center;
         }
         .fc-label {
           font-family: var(--font-heading);

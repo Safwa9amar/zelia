@@ -94,7 +94,7 @@ export default function FilterSidebar({
         <h3 className="filter-heading">
           السعر الأقصى
           <span className="price-badge">
-            {maxPrice.toLocaleString("ar-SA")} ر.س
+            {maxPrice.toLocaleString("ar-DZ")} د.ج
           </span>
         </h3>
         <input
@@ -108,8 +108,8 @@ export default function FilterSidebar({
           aria-label="السعر الأقصى"
         />
         <div className="range-labels">
-          <span>٥٠ ر.س</span>
-          <span>١٠٠٠ ر.س</span>
+          <span>٥٠ د.ج</span>
+          <span>١٠٠٠ د.ج</span>
         </div>
       </div>
 
