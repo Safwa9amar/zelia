@@ -30,9 +30,10 @@ export interface EcoTrackWilaya {
 }
 
 export interface EcoTrackCommune {
-  commune_id: number;
-  commune_name: string;
+  nom: string;
   wilaya_id: number;
+  code_postal: string;
+  has_stop_desk: number;
 }
 
 export interface EcoTrackTokenResponse {

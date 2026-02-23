@@ -24,7 +24,6 @@ export function LocationSelector({
   const [communes, setCommunes] = useState<EcoTrackCommune[]>([]);
   const [loadingWilayas, setLoadingWilayas] = useState(false);
   const [loadingCommunes, setLoadingCommunes] = useState(false);
-
   useEffect(() => {
     async function loadWilayas() {
       setLoadingWilayas(true);
@@ -118,8 +117,8 @@ export function LocationSelector({
             {loadingCommunes ? "جاري تحميل البلديات..." : "اختاري البلدية"}
           </option>
           {communes.map((c, index) => (
-            <option key={c.commune_id || index} value={c.commune_name}>
-              {c.commune_name}
+            <option key={c.nom || index} value={c.nom}>
+              {c.nom}
             </option>
           ))}
         </select>

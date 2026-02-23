@@ -131,19 +131,13 @@ export default function ProductDetailPage({
 
           {/* Info */}
           <div className="product-info-col">
-            {/* Badges */}
-            <div className="pd-badges">
-              {product.isNew && <span className="badge badge-new">جديد</span>}
-              {product.isSale && discount > 0 && (
-                <span className="badge badge-sale">خصم {discount}%</span>
-              )}
-            </div>
-
             <p className="pd-category">{product.category}</p>
             <h1 className="pd-name">{product.name}</h1>
+            {/* Description */}
+            <p className="pd-description">{product.description}</p>
 
             {/* Rating */}
-            <div className="pd-rating">
+            {/* <div className="pd-rating">
               <div className="stars">
                 {[1, 2, 3, 4, 5].map((s) => (
                   <svg
@@ -163,7 +157,7 @@ export default function ProductDetailPage({
               <span className="pd-rating-count">
                 ({product.reviewCount} تقييم)
               </span>
-            </div>
+            </div> */}
 
             {/* Price */}
             <div className="pd-price-row">
@@ -180,70 +174,14 @@ export default function ProductDetailPage({
               )}
             </div>
 
-            {/* Colors */}
-            <div className="pd-option-group">
-              <p className="pd-option-label">
-                اللون: <strong>{product.colors[selectedColor]?.name}</strong>
-              </p>
-              <div className="color-options">
-                {product.colors.map((c, i) => (
-                  <button
-                    key={c.hex}
-                    className={`color-opt ${selectedColor === i ? "selected" : ""}`}
-                    style={{ backgroundColor: c.hex }}
-                    onClick={() => setSelectedColor(i)}
-                    aria-label={c.name}
-                    title={c.name}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Sizes */}
-            {product.sizes.length > 1 && (
-              <div className="pd-option-group">
-                <div className="size-label-row">
-                  <p className="pd-option-label">المقاس</p>
-                  <Link href="#" className="size-guide-link">
-                    دليل المقاسات
-                  </Link>
-                </div>
-                <div className="size-options">
-                  {product.sizes.map((size) => (
-                    <button
-                      key={size}
-                      className={`size-btn ${selectedSize === size ? "selected" : ""}`}
-                      onClick={() => setSelectedSize(size)}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Quantity */}
-            <div className="pd-option-group">
-              <p className="pd-option-label">الكمية</p>
-              <div className="qty-control">
-                <button
-                  className="qty-btn"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                >
-                  −
-                </button>
-                <span className="qty-value">{quantity}</span>
-                <button
-                  className="qty-btn"
-                  onClick={() => setQuantity(quantity + 1)}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
-            {/* Quick Order Form */}
-            <OrderForm productName={product.name} basePrice={product.price} />
+            {/* Unified Order Form (color, size, quantity + delivery form) */}
+            <OrderForm
+              productName={product.name}
+              basePrice={product.price}
+              originalPrice={product.originalPrice}
+              colors={product.colors}
+              sizes={product.sizes}
+            />
 
             {/* Accordions */}
             <div className="pd-accordions">
