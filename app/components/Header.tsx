@@ -278,6 +278,12 @@ export default function Header() {
           .search-input {
             width: 150px;
           }
+          .header-inner {
+            height: 70px;
+          }
+          .header-logo {
+            max-height: 48px;
+          }
         }
       `}</style>
     </header>

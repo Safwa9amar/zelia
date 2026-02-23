@@ -28,7 +28,6 @@ export default function ZeliaLogo({
           objectFit: "contain",
           width: "100%",
           height: "auto",
-          borderRadius: "20px",
         }}
       />
 
