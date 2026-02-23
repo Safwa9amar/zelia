@@ -61,11 +61,7 @@ export default function HeroSection() {
             <div className="frame-dot dot-tl" />
             <div className="frame-dot dot-br" />
             <div className="hero-img-placeholder">
-              <img
-                src="https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?auto=format&fit=crop&w=600&h=750&q=80"
-                alt="تشكيلة زيليا"
-                className="hero-img"
-              />
+              <img src="/hero.png" alt="تشكيلة زيليا" className="hero-img" />
             </div>
           </div>
           {/* Floating card */}
